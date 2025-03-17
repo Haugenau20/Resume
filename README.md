@@ -4,8 +4,8 @@ Welcome to my professional portfolio repository. I'm an Electronics & Software E
 
 ## 📬 Get In Touch
 
-- [LinkedIn](https://www.linkedin.com/in/s%C3%B8ren-kj%C3%A6degaard-haug-0723855a/)
 - [Portfolio Website](https://haugenau20.github.io/Resume/)
+- [LinkedIn](https://www.linkedin.com/in/s%C3%B8ren-kj%C3%A6degaard-haug-0723855a/)
 
 ---
 
