@@ -98,7 +98,7 @@ input, select, textarea {
 		}
 
 	body, input, select, textarea {
-		color: #a2a2a2;
+		color: #333333;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
@@ -2593,11 +2593,11 @@ input, select, textarea {
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		background-color: #1f1815;
-		background-attachment: scroll,								fixed;
+		background-attachment: scroll,								scroll;
 		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
-		background-position: top left,							top left;
+		background-position: top left,							30% top;
 		background-repeat: repeat,								no-repeat;
-		background-size: auto, cover;
+		background-size: auto, auto 120%;
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;

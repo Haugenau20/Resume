@@ -1,6 +1,6 @@
 # Søren K. Haug - Electroincs & Software Engineer
 
-Welcome to my professional portfolio repository. I'm an Electronics & Software Engineer combining technical expertise with practical leadership to solve complex challenges in embedded systems and software automation. My background includes professional experience in build automation, continuous integration, and embedded software development, complemented by leadership roles in the Danish Army.
+Welcome to my professional portfolio repository. I'm an Electronics & Software Engineer combining technical expertise with practical leadership to solve complex challenges in embedded systems and software automation. My background includes professional experience in build automation, continuous integration, and embedded software development, complemented by leadership experience in the Danish Army.
 
 ## 📬 Get In Touch
 
