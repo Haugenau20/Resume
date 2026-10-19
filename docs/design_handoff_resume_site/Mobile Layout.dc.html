@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#e9e6e3;font-family:'Source Sans 3',sans-serif;}
+a{color:#49bf9d;text-decoration:none;}a:hover{color:#3aa486;}
+*::-webkit-scrollbar{display:none;}
+</style>
+</helmet>
+<section id="1a" style="display:flex;gap:64px;padding:64px;align-items:flex-start;flex-wrap:wrap;">
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="background:#1f1815;color:#fff;font-weight:700;font-size:13px;padding:3px 9px;border-radius:4px;">1a</span>
+      <span style="color:#5b524d;font-size:15px;">Phone layout — interactive (scroll, tap tabs, tap cards)</span>
+    </div>
+    <div style="width:390px;height:844px;border-radius:44px;background:#111;padding:10px;box-shadow:0 30px 60px rgba(0,0,0,.25);box-sizing:content-box;">
+      <div style="position:relative;width:390px;height:844px;border-radius:36px;overflow:hidden;background:#fff;">
+        <sc-if value="{{ collapsed }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:0;left:0;right:0;z-index:5;height:96px;box-sizing:border-box;padding:44px 20px 0;background:#1f1815;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.2);">
+            <img src="images/Mig_icon.png" alt="Søren K. Haug" style="width:34px;height:34px;border-radius:50%;object-fit:cover;"></img>
+            <div style="display:flex;flex-direction:column;line-height:1.15;">
+              <span style="color:#fff;font-weight:600;font-size:16px;">Søren K. Haug</span>
+              <span style="color:rgba(255,255,255,.6);font-size:13px;">Automation &amp; Embedded Engineer</span>
+            </div>
+          </div>
+        </sc-if>
+        <div ref="{{ scrollRef }}" onScroll="{{ onScroll }}" style="position:absolute;inset:0;overflow-y:auto;padding-bottom:96px;">
+          <div style="background:#1f1815;padding:64px 24px 28px;display:flex;flex-direction:column;gap:18px;">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <img src="images/Mig_icon.png" alt="Søren K. Haug" style="width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.15);"></img>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <span style="color:#fff;font-size:26px;font-weight:700;line-height:1.1;">Søren K. Haug</span>
+                <span style="color:#49bf9d;font-size:16px;font-weight:600;">Automation &amp; Embedded Engineer</span>
+              </div>
+            </div>
+            <p style="margin:0;color:rgba(255,255,255,.75);font-size:16px;line-height:1.5;text-wrap:pretty;">Test automation &amp; CI/CD at SAAB. Previously embedded C/C++ and build systems at LINAK.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-size:13px;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;">Denmark</span>
+              <span style="font-size:13px;color:#1f1815;background:#49bf9d;border-radius:20px;padding:4px 12px;font-weight:600;">Open to opportunities</span>
+            </div>
+          </div>
+          <div style="position:sticky;top:{{ tabsTop }}px;z-index:4;background:#fff;border-bottom:1px solid #eee;display:grid;grid-template-columns:repeat(4,1fr);">
+            <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+              <button onClick="{{ t.go }}" style="border:0;background:none;font-family:inherit;font-size:15px;font-weight:600;height:50px;color:{{ t.color }};border-bottom:3px solid {{ t.line }};cursor:pointer;">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ isWork }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:24px 0 8px;display:flex;flex-direction:column;gap:14px;">
+              <div style="padding:0 20px;display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-size:20px;font-weight:700;color:#4a4340;">Featured</span>
+                <span style="font-size:13px;color:#a2a2a2;">Swipe →</span>
+              </div>
+              <div style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px 4px;">
+                <sc-for list="{{ featured }}" as="p" hint-placeholder-count="3">
+                  <div onClick="{{ p.open }}" style="flex:0 0 290px;scroll-snap-align:center;border-radius:14px;overflow:hidden;background:#f7f6f5;cursor:pointer;display:flex;flex-direction:column;">
+                    <div style="height:150px;background:#2a2320;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                      <img src="{{ p.img }}" alt="{{ p.title }}" style="width:100%;height:100%;object-fit:cover;"></img>
+                    </div>
+                    <div style="padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;">
+                      <span style="font-size:28px;font-weight:700;color:#49bf9d;line-height:1;">{{ p.metric }}</span>
+                      <span style="font-size:13px;color:#8a817c;">{{ p.metricLabel }}</span>
+                      <span style="font-size:17px;font-weight:600;color:#3d3735;line-height:1.25;">{{ p.title }}</span>
+                      <span style="font-size:13px;color:#8a817c;">{{ p.org }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <span style="padding:12px 20px 0;font-size:20px;font-weight:700;color:#4a4340;">More work</span>
+              <div style="display:flex;flex-direction:column;">
+                <sc-for list="{{ more }}" as="p" hint-placeholder-count="3">
+                  <div onClick="{{ p.open }}" style="display:flex;align-items:center;gap:14px;padding:12px 20px;border-top:1px solid #f0eeec;cursor:pointer;min-height:64px;">
+                    <img src="{{ p.img }}" alt="{{ p.title }}" style="width:52px;height:52px;border-radius:10px;object-fit:cover;background:#2a2320;flex:none;"></img>
+                    <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;">
+                      <span style="font-size:16px;font-weight:600;color:#3d3735;">{{ p.title }}</span>
+                      <span style="font-size:13px;color:#8a817c;">{{ p.org }} · {{ p.short }}</span>
+                    </div>
+                    <span style="color:#c4bdb8;font-size:20px;">›</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isExp }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:24px 20px;display:flex;flex-direction:column;">
+              <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="4">
+                <div onClick="{{ j.toggle }}" style="display:grid;grid-template-columns:44px 1fr;gap:14px;cursor:pointer;">
+                  <div style="display:flex;flex-direction:column;align-items:center;">
+                    <div style="width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid #e6e2df;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                      <img src="{{ j.logo }}" alt="{{ j.org }}" style="width:30px;height:30px;object-fit:contain;"></img>
+                    </div>
+                    <div style="flex:1;width:2px;background:#ece8e5;min-height:20px;"></div>
+                  </div>
+                  <div style="padding-bottom:22px;display:flex;flex-direction:column;gap:3px;">
+                    <span style="font-size:13px;color:#49bf9d;font-weight:600;letter-spacing:.04em;">{{ j.years }}</span>
+                    <span style="font-size:17px;font-weight:600;color:#3d3735;">{{ j.role }}</span>
+                    <span style="font-size:14px;color:#8a817c;">{{ j.org }}</span>
+                    <sc-if value="{{ j.open }}" hint-placeholder-val="{{ false }}">
+                      <p style="margin:6px 0 0;font-size:15px;line-height:1.5;color:#6e6662;text-wrap:pretty;">{{ j.desc }}</p>
+                    </sc-if>
+                  </div>
+                </div>
+              </sc-for>
+              <div style="margin-top:4px;padding:16px;border-radius:12px;background:#f7f6f5;display:flex;align-items:center;gap:12px;">
+                <img src="images/logos/sdu.png" alt="SDU" style="width:36px;height:36px;object-fit:contain;"></img>
+                <div style="display:flex;flex-direction:column;">
+                  <span style="font-size:15px;font-weight:600;color:#3d3735;">B.Eng. Electronics</span>
+                  <span style="font-size:13px;color:#8a817c;">Univ. of Southern Denmark · exchange at U of Calgary</span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isSkills }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:24px 20px;display:flex;flex-direction:column;gap:22px;">
+              <sc-for list="{{ skills }}" as="g" hint-placeholder-count="4">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <span style="font-size:13px;font-weight:700;color:#8a817c;letter-spacing:.08em;text-transform:uppercase;">{{ g.name }}</span>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                    <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
+                      <span style="font-size:15px;color:#3d3735;background:#f3f1ef;border-radius:8px;padding:6px 12px;">{{ s }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:24px 20px;display:flex;flex-direction:column;gap:14px;">
+              <p style="margin:0;font-size:16px;line-height:1.6;color:#6e6662;text-wrap:pretty;">Electronics &amp; software engineer. I build the test frameworks, pipelines and build systems that let embedded teams ship with confidence.</p>
+              <p style="margin:0;font-size:16px;line-height:1.6;color:#6e6662;text-wrap:pretty;">Former Sergeant in the Danish Army. Off the clock: D&amp;D, board games, side projects.</p>
+              <div style="display:flex;flex-direction:column;border-top:1px solid #f0eeec;margin-top:6px;">
+                <a href="https://github.com/Haugenau20" style="display:flex;justify-content:space-between;align-items:center;min-height:52px;border-bottom:1px solid #f0eeec;font-size:16px;color:#3d3735;"><span>GitHub</span><span style="color:#c4bdb8;">↗</span></a>
+                <a href="#" style="display:flex;justify-content:space-between;align-items:center;min-height:52px;border-bottom:1px solid #f0eeec;font-size:16px;color:#3d3735;"><span>Email</span><span style="color:#8a817c;font-size:14px;">hello@yourdomain.dk</span></a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;z-index:6;padding:12px 16px 30px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-top:1px solid #eee;display:grid;grid-template-columns:1fr 1fr 52px;gap:8px;">
+          <a href="#" style="height:48px;border-radius:10px;background:#49bf9d;color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;">Download CV</a>
+          <a href="#" style="height:48px;border-radius:10px;border:2px solid #1f1815;color:#1f1815;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;box-sizing:border-box;">LinkedIn</a>
+          <a href="#" title="Email" style="height:48px;border-radius:10px;background:#f3f1ef;color:#1f1815;font-size:20px;display:flex;align-items:center;justify-content:center;">✉</a>
+        </div>
+        <sc-if value="{{ sheet }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;z-index:8;background:rgba(20,15,12,.5);"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;z-index:9;max-height:78%;overflow-y:auto;background:#fff;border-radius:22px 22px 0 0;display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:center;padding:10px 0 4px;"><div style="width:40px;height:5px;border-radius:3px;background:#ddd;"></div></div>
+            <div style="height:180px;margin:6px 16px 0;border-radius:14px;overflow:hidden;background:#2a2320;flex:none;">
+              <img src="{{ sheet.img }}" alt="{{ sheet.title }}" style="width:100%;height:100%;object-fit:cover;"></img>
+            </div>
+            <div style="padding:18px 20px 34px;display:flex;flex-direction:column;gap:10px;">
+              <span style="font-size:13px;color:#8a817c;">{{ sheet.org }}</span>
+              <span style="font-size:22px;font-weight:700;color:#3d3735;line-height:1.2;">{{ sheet.title }}</span>
+              <p style="margin:0;font-size:16px;line-height:1.55;color:#6e6662;text-wrap:pretty;">{{ sheet.desc }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                <sc-for list="{{ sheet.tags }}" as="tg" hint-placeholder-count="3">
+                  <span style="font-size:13px;color:#2f8f73;background:#e6f6f1;border-radius:6px;padding:4px 9px;">{{ tg }}</span>
+                </sc-for>
+              </div>
+              <button onClick="{{ closeSheet }}" style="margin-top:10px;height:48px;border-radius:10px;border:0;background:#1f1815;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;">Close</button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:420px;display:flex;flex-direction:column;gap:22px;padding-top:44px;color:#3d3735;">
+    <span style="font-size:28px;font-weight:700;line-height:1.15;">Why this is different from desktop</span>
+    <div style="display:flex;flex-direction:column;gap:18px;font-size:16px;line-height:1.5;color:#5b524d;">
+      <div><strong style="color:#1f1815;">1 · Identity card, not banner.</strong> Name, role and status in one compact block. When you scroll, it shrinks into a slim top bar so your name never leaves the screen.</div>
+      <div><strong style="color:#1f1815;">2 · Tabs instead of one long scroll.</strong> Work · Experience · Skills · About. A recruiter jumps straight to what they care about, without scrolling past six project cards on a 6" screen.</div>
+      <div><strong style="color:#1f1815;">3 · Actions in the thumb zone.</strong> CV, LinkedIn and Email are pinned at the bottom, always one tap away. That fixes Strata pushing contact into the footer.</div>
+      <div><strong style="color:#1f1815;">4 · Lead with the number.</strong> Featured cards open with the result (79%, 100%), then the title. Swipeable, so 3 flagships take up one screen height.</div>
+      <div><strong style="color:#1f1815;">5 · Details on demand.</strong> Long descriptions move into a bottom sheet, and the timeline expands on tap. The default view stays scannable.</div>
+      <div><strong style="color:#1f1815;">6 · Same design language.</strong> Strata's dark #1f1815 header, #49bf9d accent and Source Sans. Built as a separate mobile layout at the &lt;736px breakpoint, while desktop keeps the side panel.</div>
+    </div>
+    <span style="font-size:13px;color:#8a817c;">Dates, metrics and the email address are placeholders.</span>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'work', collapsed: false, sheet: null, openJob: 0 };
+  scrollRef = React.createRef();
+  projects = [
+    { id:'build', featured:true, img:'images/thumbs/cmake.png', metric:'79%', metricLabel:'faster builds', title:'CMake build system for embedded platform', org:'LINAK', short:'CMake, Meson', desc:'Created a complete CMake build system for an embedded software platform, cutting build times by about 79% compared to the previous solution.', tags:['CMake','Meson','C/C++','Embedded'] },
+    { id:'pytest', featured:true, img:'images/thumbs/ttrpg.png', metric:'0→1', metricLabel:'framework built from scratch', title:'pytest automation for TactiCall', org:'SAAB', short:'pytest, MQTT', desc:'Designed a pytest automation framework with CI/CD integration for a tactical communication system. Covers API test suites over MQTT, test plans and Doxygen docs for EAL certification.', tags:['pytest','Python','CI/CD','MQTT','EAL'] },
+    { id:'ttrpg', featured:true, img:'images/thumbs/dnd.png', metric:'2', metricLabel:'live apps with real users', title:'Full-stack TTRPG apps', org:'Independent', short:'React, Firebase', desc:'A D&D Campaign Companion with collaborative invite links and a Daggerheart character sheet with Google OAuth. React, TypeScript and Firebase.', tags:['React','TypeScript','Firebase','OAuth'] },
+    { id:'embedded', img:'images/thumbs/CBD6S.png', title:'Embedded actuator firmware', org:'LINAK', short:'ARM Cortex M0+/M4', desc:'Embedded features for STM32 and NRF528x targets, with unit tests in GoogleTest and system tests in Robot Framework.', tags:['C/C++','STM32','GoogleTest','Robot Framework'] },
+    { id:'jenkins', img:'images/thumbs/jenkins.svg', title:'Jenkins CI/CD pipelines', org:'LINAK', short:'Jenkins, Groovy', desc:'Automated pipeline structure for building and testing embedded modules, with test reporting.', tags:['Jenkins','Groovy','PowerShell'] },
+    { id:'lint', img:'images/thumbs/pclintplus.JPG', title:'MISRA linting framework', org:'LINAK', short:'PC-lint Plus', desc:'Automated linting with PowerShell and PC-lint Plus, categorising issues against MISRA.', tags:['PC-lint Plus','MISRA C','PowerShell'] }
+  ];
+  jobs = [
+    { years:'20XX – NOW', role:'Automation Tester', org:'SAAB Danmark A/S', logo:'images/logos/saab.svg', desc:'Test automation and CI/CD for tactical communication systems. Built the pytest framework from scratch.' },
+    { years:'20XX – 20XX', role:'Embedded Software Engineer', org:'LINAK A/S', logo:'images/logos/linak.svg', desc:'Firmware for actuator control, build systems (79% faster builds), Jenkins pipelines and MISRA linting.' },
+    { years:'20XX – 20XX', role:'Intern → Thesis', org:'LINAK A/S', logo:'images/logos/linak.svg', desc:'Bachelor thesis on CMake vs Meson for embedded builds. Grade A.' },
+    { years:'20XX – 20XX', role:'Sergeant', org:'Danish Army · Royal Guard', logo:'images/logos/danish-army.svg', desc:'Led teams of 8–40. Awarded Best Squad.' }
+  ];
+  skills = [
+    { name:'Test & automation', items:['pytest','Robot Framework','GoogleTest','Python'] },
+    { name:'Embedded', items:['C/C++','ARM Cortex-M','STM32','NRF528x'] },
+    { name:'Build & CI/CD', items:['CMake','Meson','Jenkins','PowerShell'] },
+    { name:'Web', items:['React','TypeScript','Firebase'] }
+  ];
+  setTab(tab) {
+    this.setState({ tab });
+    const el = this.scrollRef.current;
+    if (el && el.scrollTop > 200) el.scrollTop = 200;
+  }
+  renderVals() {
+    const { tab, collapsed, sheet, openJob } = this.state;
+    const open = p => () => this.setState({ sheet: p });
+    const labels = [['work','Work'],['exp','Career'],['skills','Skills'],['about','About']];
+    return {
+      scrollRef: this.scrollRef,
+      onScroll: e => { const c = e.currentTarget.scrollTop > 190; if (c !== this.state.collapsed) this.setState({ collapsed: c }); },
+      collapsed, tabsTop: collapsed ? 96 : 0,
+      tabs: labels.map(([id, label]) => ({ label, go: () => this.setTab(id), color: tab === id ? '#1f1815' : '#a2a2a2', line: tab === id ? '#49bf9d' : 'transparent' })),
+      isWork: tab === 'work', isExp: tab === 'exp', isSkills: tab === 'skills', isAbout: tab === 'about',
+      featured: this.projects.filter(p => p.featured).map(p => ({ ...p, open: open(p) })),
+      more: this.projects.filter(p => !p.featured).map(p => ({ ...p, open: open(p) })),
+      jobs: this.jobs.map((j, i) => ({ ...j, open: openJob === i, toggle: () => this.setState({ openJob: openJob === i ? -1 : i }) })),
+      skills: this.skills,
+      sheet, closeSheet: () => this.setState({ sheet: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,5 +1,47 @@
 @import url("fontawesome-all.min.css");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+
+/*
+	Colour tokens (docs/design_handoff_resume_site/Colour Scheme.md).
+	Never use --accent as text on white; on amber fills use --ink text.
+	--accent-hover / --accent-active are the primary button's hover and pressed fills.
+*/
+
+	:root {
+		--accent: #E8A33D;
+		--accent-hover: #EDB35C;
+		--accent-active: #D9922B;
+		--accent-deep: #A0600A;
+		--accent-deeper: #7D4A06;
+		--accent-tint: #FBEFDC;
+		--ink: #1F1815;
+		--on-ink: #FFFFFF;
+		--on-ink-muted: rgba(255, 255, 255, 0.75);
+		--on-ink-subtle: rgba(255, 255, 255, 0.6);
+		--on-ink-line: rgba(255, 255, 255, 0.2);
+		--bg: #FFFFFF;
+		--surface: #F7F6F5;
+		--surface-2: #F3F1EF;
+		--line: #EBE7E4;
+		--text-strong: #3D3735;
+		--text: #6E6662;
+		--text-muted: #756D68;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--accent-deep);
+		outline-offset: 2px;
+	}
+
+	#header :focus-visible,
+	#footer :focus-visible,
+	#phone-topbar :focus-visible {
+		outline-color: var(--accent);
+	}
+
+	[hidden] {
+		display: none !important;
+	}
 
 /*
 	Strata by HTML5 UP
@@ -98,8 +140,8 @@ input, select, textarea {
 		}
 
 	body, input, select, textarea {
-		color: #333333;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		color: var(--text);
+		font-family: "Source Sans 3", "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
 		line-height: 1.75em;
@@ -111,18 +153,18 @@ input, select, textarea {
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		border-bottom: dotted 1px;
-		color: #49bf9d;
+		color: var(--accent-deep);
 		text-decoration: none;
 	}
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #49bf9d !important;
+			color: var(--accent-deeper) !important;
 			text-decoration: none;
 		}
 
 	strong, b {
-		color: #787878;
+		color: var(--text-strong);
 		font-weight: 400;
 	}
 
@@ -135,7 +177,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #787878;
+		color: var(--text-strong);
 		font-weight: 400;
 		line-height: 1em;
 		margin: 0 0 1em 0;
@@ -190,7 +232,7 @@ input, select, textarea {
 
 	hr {
 		border: 0;
-		border-bottom: solid 2px #efefef;
+		border-bottom: solid 2px var(--line);
 		margin: 2em 0;
 	}
 
@@ -199,16 +241,16 @@ input, select, textarea {
 		}
 
 	blockquote {
-		border-left: solid 6px #efefef;
+		border-left: solid 6px var(--line);
 		font-style: italic;
 		margin: 0 0 2em 0;
 		padding: 0.5em 0 0.5em 1.5em;
 	}
 
 	code {
-		background: #f7f7f7;
+		background: var(--surface);
 		border-radius: 0.35em;
-		border: solid 2px #efefef;
+		border: solid 2px var(--line);
 		font-family: "Courier New", monospace;
 		font-size: 0.9em;
 		margin: 0 0.25em;
@@ -1765,7 +1807,7 @@ input, select, textarea {
 	}
 
 	header p {
-		color: #b2b2b2;
+		color: var(--text-muted);
 		position: relative;
 		margin: 0 0 1.5em 0;
 	}
@@ -1801,7 +1843,7 @@ input, select, textarea {
 	}
 
 	label {
-		color: #787878;
+		color: var(--text-strong);
 		display: block;
 		font-size: 0.9em;
 		font-weight: 400;
@@ -1817,7 +1859,7 @@ input, select, textarea {
 		-webkit-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		background: #f7f7f7;
+		background: var(--surface);
 		border-radius: 0.35em;
 		border: solid 2px transparent;
 		color: inherit;
@@ -1841,7 +1883,7 @@ input, select, textarea {
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #49bf9d;
+			border-color: var(--accent-deep);
 		}
 
 	select {
@@ -1855,7 +1897,7 @@ input, select, textarea {
 	}
 
 		select option {
-			color: #787878;
+			color: var(--text-strong);
 			background: #fff;
 		}
 
@@ -1895,7 +1937,7 @@ input, select, textarea {
 		input[type="checkbox"] + label,
 		input[type="radio"] + label {
 			text-decoration: none;
-			color: #a2a2a2;
+			color: var(--text-muted);
 			cursor: pointer;
 			display: inline-block;
 			font-size: 1em;
@@ -1921,7 +1963,7 @@ input, select, textarea {
 
 			input[type="checkbox"] + label:before,
 			input[type="radio"] + label:before {
-				background: #f7f7f7;
+				background: var(--surface);
 				border-radius: 0.35em;
 				border: solid 2px transparent;
 				content: '';
@@ -1938,15 +1980,15 @@ input, select, textarea {
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #787878;
-			border-color: #787878;
+			background: var(--text-strong);
+			border-color: var(--text-strong);
 			color: #fff;
 			content: '\f00c';
 		}
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #49bf9d;
+			border-color: var(--accent-deep);
 		}
 
 	input[type="checkbox"] + label:before {
@@ -1958,22 +2000,22 @@ input, select, textarea {
 	}
 
 	::-webkit-input-placeholder {
-		color: #b2b2b2 !important;
+		color: var(--text-muted) !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: #b2b2b2 !important;
+		color: var(--text-muted) !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: #b2b2b2 !important;
+		color: var(--text-muted) !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: #b2b2b2 !important;
+		color: var(--text-muted) !important;
 		opacity: 1.0;
 	}
 
@@ -1981,7 +2023,7 @@ input, select, textarea {
 
 	.box {
 		border-radius: 0.35em;
-		border: solid 2px #efefef;
+		border: solid 2px var(--line);
 		margin-bottom: 2em;
 		padding: 1.5em;
 	}
@@ -2174,7 +2216,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				border-top: solid 2px #efefef;
+				border-top: solid 2px var(--line);
 				padding: 0.5em 0;
 			}
 
@@ -2231,7 +2273,7 @@ input, select, textarea {
 			}
 
 			ul.labeled-icons li h3 {
-				color: #b2b2b2;
+				color: var(--text-muted);
 				left: 0;
 				position: absolute;
 				text-align: center;
@@ -2375,13 +2417,13 @@ input, select, textarea {
 	}
 
 		table tbody tr {
-			border: solid 1px #efefef;
+			border: solid 1px var(--line);
 			border-left: 0;
 			border-right: 0;
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: #f7f7f7;
+				background-color: var(--surface);
 			}
 
 		table td {
@@ -2389,7 +2431,7 @@ input, select, textarea {
 		}
 
 		table th {
-			color: #787878;
+			color: var(--text-strong);
 			font-size: 0.9em;
 			font-weight: 400;
 			padding: 0 0.75em 0.75em 0.75em;
@@ -2397,11 +2439,11 @@ input, select, textarea {
 		}
 
 		table thead {
-			border-bottom: solid 2px #efefef;
+			border-bottom: solid 2px var(--line);
 		}
 
 		table tfoot {
-			border-top: solid 2px #efefef;
+			border-top: solid 2px var(--line);
 		}
 
 		table.alt {
@@ -2409,7 +2451,7 @@ input, select, textarea {
 		}
 
 			table.alt tbody tr td {
-				border: solid 2px #efefef;
+				border: solid 2px var(--line);
 				border-left-width: 0;
 				border-top-width: 0;
 			}
@@ -2446,8 +2488,8 @@ input, select, textarea {
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		background-color: transparent;
 		border-radius: 0.35em;
-		border: solid 3px #efefef;
-		color: #787878 !important;
+		border: solid 3px var(--line);
+		color: var(--text-strong) !important;
 		cursor: pointer;
 		display: inline-block;
 		font-weight: 400;
@@ -2465,17 +2507,17 @@ input, select, textarea {
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
-			border-color: #49bf9d;
-			color: #49bf9d !important;
+			border-color: var(--accent-deep);
+			color: var(--accent-deep) !important;
 		}
 
 		input[type="submit"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
 		.button:active {
-			background-color: rgba(73, 191, 157, 0.1);
-			border-color: #49bf9d;
-			color: #49bf9d !important;
+			background-color: var(--accent-tint);
+			border-color: var(--accent-deep);
+			color: var(--accent-deep) !important;
 		}
 
 		input[type="submit"].icon,
@@ -2518,25 +2560,25 @@ input, select, textarea {
 		input[type="reset"].primary,
 		input[type="button"].primary,
 		.button.primary {
-			background-color: #49bf9d;
-			border-color: #49bf9d;
-			color: #ffffff !important;
+			background-color: var(--accent);
+			border-color: var(--accent);
+			color: var(--ink) !important;
 		}
 
 			input[type="submit"].primary:hover,
 			input[type="reset"].primary:hover,
 			input[type="button"].primary:hover,
 			.button.primary:hover {
-				background-color: #5cc6a7;
-				border-color: #5cc6a7;
+				background-color: var(--accent-hover);
+				border-color: var(--accent-hover);
 			}
 
 			input[type="submit"].primary:active,
 			input[type="reset"].primary:active,
 			input[type="button"].primary:active,
 			.button.primary:active {
-				background-color: #3eb08f;
-				border-color: #3eb08f;
+				background-color: var(--accent-active);
+				border-color: var(--accent-active);
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -2548,29 +2590,8 @@ input, select, textarea {
 		.button:disabled {
 			background-color: #e7e7e7 !important;
 			border-color: #e7e7e7 !important;
-			color: #b2b2b2 !important;
+			color: var(--text-muted) !important;
 			cursor: default;
-		}
-
-/* Work Item */
-
-	.work-item {
-		margin: 0 0 2em 0;
-	}
-
-		.work-item .image {
-			margin: 0 0 1.5em 0;
-		}
-
-		.work-item h3 {
-			font-size: 1em;
-			margin: 0 0 0.5em 0;
-		}
-
-		.work-item p {
-			font-size: 0.8em;
-			line-height: 1.5em;
-			margin: 0;
 		}
 
 /* Header */
@@ -2598,7 +2619,8 @@ input, select, textarea {
 		background-position: top left,							30% top;
 		background-repeat: repeat,								no-repeat;
 		background-size: auto, auto 120%;
-		color: rgba(255, 255, 255, 0.5);
+		box-shadow: inset 0 0 0 100vmax rgba(31, 24, 21, 0.7); /* 70% --ink over the photo keeps amber and white text readable */
+		color: var(--on-ink-muted);
 		height: 100%;
 		left: 0;
 		padding: 8em 4em;
@@ -2634,17 +2656,74 @@ input, select, textarea {
 		}
 
 		#header h1 {
-			color: rgba(255, 255, 255, 0.85);
-			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-			font-size: 1.35em;
-			line-height: 1.75em;
+			color: var(--on-ink);
+			font-size: 1.75em;
+			font-weight: 700;
+			line-height: 1.15em;
 			margin: 0;
 		}
 
 		#header .image.avatar {
+			border: 3px solid rgba(255, 255, 255, 0.15);
 			margin: 0 0 1em 0;
 			width: 6.25em;
 		}
+
+		#header .identity-role {
+			color: var(--accent);
+			font-weight: 600;
+			margin: 0.35em 0 0 0;
+		}
+
+		#header .identity-hook {
+			color: var(--on-ink-muted);
+			line-height: 1.5em;
+			margin: 1.25em 0 0 0;
+		}
+
+		#header .identity-pills {
+			list-style: none;
+			margin: 1em 0 0 0;
+			padding: 0;
+		}
+
+			#header .identity-pills li {
+				border: 1px solid var(--on-ink-line);
+				border-radius: 20px;
+				color: rgba(255, 255, 255, 0.8);
+				display: inline-block;
+				font-size: 0.8em;
+				line-height: 1.5em;
+				padding: 0.25em 0.75em;
+			}
+
+		#header .header-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.6em;
+			justify-content: flex-end;
+			list-style: none;
+			margin: 1.75em 0 0 0;
+			padding: 0;
+		}
+
+			#header .header-actions .button {
+				border-radius: 10px;
+				font-weight: 600;
+				height: 48px;
+				line-height: 42px;
+				min-width: 0;
+			}
+
+			#header .header-actions .button.outline {
+				border: 2px solid var(--accent);
+				color: var(--on-ink) !important;
+				line-height: 44px;
+			}
+
+				#header .header-actions .button.outline:hover {
+					background-color: rgba(232, 163, 61, 0.15);
+				}
 
 /* Footer */
 
@@ -2692,12 +2771,12 @@ input, select, textarea {
 	}
 
 		#main > section {
-			border-top: solid 2px #efefef;
+			border-top: solid 2px var(--line);
 			margin: 4em 0 0 0;
 			padding: 4em 0 0 0;
 		}
 
-			#main > section:first-child {
+			#main > section:first-of-type {
 				border-top: 0;
 				margin-top: 0;
 				padding-top: 0;
@@ -3223,101 +3302,1173 @@ input, select, textarea {
 
 	}
 
-/* Tech Tags */
+/* Section headings */
 
-.tech-tags {
-	margin-bottom: 0.5em;
-	margin-top: 10px;
-  }
-  
-  .tag {
-	display: inline-flex;
-	background: #f5f5f5;
-	border-radius: 3px;
-	padding: 0.2em 0.6em;
-	margin-right: 0.5em;
-	margin-bottom: 0.5em;
-	font-size: 0.8em;
-	color: #555;
-  }
-
-/* Logos */
-.logo-container {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 0 auto 2em auto;
-  }
-
-  .logo-container a {
-	display: flex;
-	position: relative;
-	width: 100%;
-	height: 100%;
-	border-bottom: none !important;
-  }
-  
-  .logo-container img {
-	width: 180px;
-	height: auto;
-	object-fit: contain;
-	transition: transform 0.15s ease; /* Optional: smooth transition for hover effect */
-  }
-
-  /* Optional: subtle hover effect for better UX */
-  .logo-container a:hover img {
-	transform: scale(1.01);
-  }
-  
-  /* Update overlay selector to work with nested anchor */
-  .logo-container a:hover .overlay {
-	opacity: 1;
-  }
-  
-  /* Responsive adjustments */
-  @media screen and (max-width: 980px) {
-	.logo-container img {
-	  width: 160px;
+	#main h2 {
+		color: var(--text-strong);
+		font-weight: 600;
 	}
-  }
-  
-  @media screen and (max-width: 736px) {
-	.logo-container img {
-	  width: 140px;
+
+/* Experience timeline */
+
+	.timeline {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
-  }
-  
-  @media screen and (max-width: 480px) {
-	.logo-container img {
-	  width: 120px;
+
+		.timeline-item {
+			display: grid;
+			gap: 0 14px;
+			grid-template-columns: 44px 1fr;
+			padding: 0;
+		}
+
+		.timeline-logo {
+			align-items: center;
+			background: var(--bg);
+			border: 1px solid #E6E2DF;
+			border-radius: 50%;
+			color: var(--text-strong);
+			display: flex;
+			height: 44px;
+			justify-content: center;
+			overflow: hidden;
+			position: relative;
+			width: 44px;
+		}
+
+			.timeline-logo img {
+				height: 30px;
+				object-fit: contain;
+				width: 30px;
+			}
+
+			.timeline-logo .icon {
+				font-size: 18px;
+			}
+
+		/* The connecting line runs down from each logo to the next entry. */
+		.timeline-item:not(:last-child) {
+			background: linear-gradient(var(--line), var(--line)) 21px 44px / 2px calc(100% - 44px) no-repeat;
+		}
+
+		.timeline-body {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			padding-bottom: 22px;
+		}
+
+		.timeline-head {
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+		}
+
+		.timeline-years {
+			color: var(--accent-deep);
+			font-size: 13px;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			line-height: 1.4;
+		}
+
+		#main .timeline-role {
+			color: var(--text-strong);
+			font-size: 17px;
+			font-weight: 600;
+			line-height: 1.3;
+			margin: 0;
+		}
+
+		.timeline-org {
+			color: var(--text-muted);
+			font-size: 14px;
+			line-height: 1.4;
+		}
+
+		#main .timeline-desc {
+			color: var(--text);
+			font-size: 15px;
+			line-height: 1.5;
+			margin: 6px 0 0 0;
+		}
+
+/* Selected work */
+
+	/* Section title with the phone-only "Swipe →" hint on the same line. */
+	.work-intro {
+		align-items: baseline;
+		display: flex;
+		gap: 1em;
+		justify-content: space-between;
+		margin: 0 0 1.5em 0;
 	}
-  }
-  
-  /* Keep your existing overlay styles */
-  .overlay {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 100%;
-	width: 100%;
-	opacity: 0;
-	transition: .5s ease;
-	background-color: rgba(0, 0, 0, 0.7);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-  }
-  
-  .logo-container:hover .overlay {
-	opacity: 1;
-  }
-  
-  .text {
-	color: white;
-	font-size: 16px;
-	text-align: center;
-	padding: 0 10px;
-  }
+
+		#main .work-intro h2 {
+			margin: 0;
+		}
+
+	.work-heading {
+		align-items: baseline;
+		display: flex;
+		justify-content: space-between;
+		margin: 64px 0 1em 0;
+	}
+
+		#main .work-heading h3 {
+			color: var(--text-strong);
+			font-size: 1em;
+			font-weight: 600;
+			margin: 0;
+		}
+
+		.work-hint {
+			display: none;
+		}
+
+	.work-item {
+		background: var(--surface);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+		.work-item .image.thumb {
+			background: #2A2320;
+			border-radius: 0;
+			display: block;
+		}
+
+			/* Show card images at full colour; Strata's dotted overlay only appears on hover. */
+			.work-item .image:before,
+			body.is-touch .work-item .image.thumb:before {
+				border-radius: 0;
+				opacity: 0 !important;
+			}
+
+			.work-item .image.thumb:hover:before {
+				opacity: 1 !important;
+			}
+
+			body.phone-ui .work-item .image:before,
+			body.phone-ui .work-item .image:after {
+				display: none;
+			}
+
+			.work-item .image.thumb img {
+				aspect-ratio: 16 / 9;
+				border-radius: 0;
+				display: block;
+				object-fit: cover;
+				width: 100%;
+			}
+
+			/* Diagrams scale to fit rather than crop. The navy matches the diagram SVGs' own background. */
+			.work-item .image.thumb.diagram {
+				background: #15202E;
+			}
+
+				.work-item .image.thumb.diagram img {
+					object-fit: contain;
+				}
+
+			/* Transparent product cutouts sit whole on white. */
+			.work-item .image.thumb.cutout {
+				background: #FFFFFF;
+			}
+
+				.work-item .image.thumb.cutout img {
+					object-fit: contain;
+				}
+
+		.work-body {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+			padding: 1em 1.1em 1.2em 1.1em;
+		}
+
+		#main .work-item h3 {
+			color: var(--text-strong);
+			font-size: 1em;
+			font-weight: 600;
+			line-height: 1.25;
+			margin: 0;
+		}
+
+		#main .work-item p {
+			font-size: 0.8em;
+			line-height: 1.5em;
+			margin: 0;
+		}
+
+		#main .work-metric {
+			align-items: baseline;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5em;
+		}
+
+			.work-metric strong {
+				color: var(--accent-deep);
+				font-size: 2.2em;
+				font-weight: 700;
+				line-height: 1;
+			}
+
+			.work-metric span {
+				color: var(--text-muted);
+			}
+
+		.work-title {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		#main .work-org {
+			color: var(--text-muted);
+		}
+
+		/* Each card carries a full description (Featured, phone sheet) and a one-line summary (More work). */
+		#main .work-summary,
+		.project-internal {
+			display: none;
+		}
+
+		.project-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5em;
+			margin-top: 0.4em;
+		}
+
+			.project-links .button {
+				min-width: 0;
+			}
+
+	/* Featured: large horizontal cards. */
+	.work-featured {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25em;
+		margin-bottom: 2.5em;
+	}
+
+		.work-featured .work-item {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+		}
+
+			.work-featured .work-item .image.thumb,
+			.work-featured .work-item .image.thumb img {
+				height: 100%;
+			}
+
+			.work-featured .work-item .image.thumb img {
+				aspect-ratio: auto;
+				min-height: 12em;
+			}
+
+	/* More work: compact rows (thumbnail, text, link). Scoped to .work-more so a card can move between lists. */
+	.work-more {
+		border-top: 1px solid var(--line);
+	}
+
+		.work-more .work-item {
+			align-items: center;
+			background: none;
+			border-bottom: 1px solid var(--line);
+			border-radius: 0;
+			display: grid;
+			gap: 20px;
+			grid-template-columns: 128px minmax(0, 1fr);
+			overflow: visible;
+			padding: 16px 0;
+		}
+
+			.work-more .work-item .image.thumb {
+				border-radius: 8px;
+				overflow: hidden;
+			}
+
+			/* Text in the first column, the link in a second column spanning the title, summary and tags. */
+			.work-more .work-body {
+				align-items: center;
+				display: grid;
+				gap: 6px 20px;
+				grid-template-columns: minmax(0, 1fr) auto;
+				padding: 0;
+			}
+
+				.work-more .work-body > * {
+					grid-column: 1;
+				}
+
+				#main .work-more .work-metric,
+				#main .work-more .work-desc {
+					display: none;
+				}
+
+				.work-more .work-title {
+					align-items: baseline;
+					flex-direction: row;
+					flex-wrap: wrap;
+					gap: 4px 10px;
+				}
+
+					#main .work-more h3 {
+						font-size: 18px;
+					}
+
+					#main .work-more .work-org {
+						font-size: 14px;
+					}
+
+				#main .work-more .work-summary {
+					color: var(--text);
+					display: block;
+					font-size: 15px;
+					line-height: 1.5;
+				}
+
+				.work-more .tech-tags {
+					margin: 2px 0 0 0;
+				}
+
+					.work-more .tech-tags .tag {
+						border-radius: 5px;
+						padding: 1px 8px;
+					}
+
+					.work-more .tech-tags .tag:nth-child(n+4) {
+						display: none;
+					}
+
+				.work-more .project-links {
+					grid-column: 2;
+					grid-row: 1 / span 3;
+					margin: 0;
+				}
+
+					/* One text link per row instead of buttons. */
+					.work-more .project-links .button {
+						background: none;
+						border: 0;
+						border-radius: 0;
+						color: var(--accent-deep) !important;
+						font-size: 15px;
+						font-weight: 600;
+						height: auto;
+						line-height: 1.5;
+						padding: 0;
+					}
+
+						.work-more .project-links .button:hover,
+						.work-more .project-links .button:active {
+							background: none;
+							color: var(--accent-deeper) !important;
+						}
+
+						.work-more .project-links .button::after {
+							content: " →";
+						}
+
+						.work-more .project-links .button:not(:first-child) {
+							display: none;
+						}
+
+					.work-more .project-internal {
+						color: var(--text-muted);
+						display: inline;
+						font-size: 15px;
+						white-space: nowrap;
+					}
+
+/* Tags and skill chips */
+
+	.tech-tags,
+	.skill-chips,
+	.sheet-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		list-style: none;
+		margin: 0.25em 0 0 0;
+		padding: 0;
+	}
+
+		.tech-tags .tag,
+		.sheet-tags li {
+			background: var(--accent-tint);
+			border-radius: 6px;
+			color: var(--accent-deeper);
+			font-size: 13px;
+			line-height: 1.5;
+			padding: 4px 9px;
+		}
+
+	.skill-group {
+		margin: 0 0 1.5em 0;
+	}
+
+		#main .skill-group h3 {
+			color: var(--text-muted);
+			font-size: 13px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			margin: 0 0 10px 0;
+			text-transform: uppercase;
+		}
+
+		.skill-chips {
+			gap: 8px;
+		}
+
+			.skill-chips li {
+				background: var(--surface-2);
+				border-radius: 8px;
+				color: var(--text-strong);
+				font-size: 15px;
+				line-height: 1.5;
+				padding: 6px 12px;
+			}
+
+/* Education */
+
+	.education-card {
+		background: var(--surface);
+		border-radius: 12px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		list-style: none;
+		margin: 0;
+		padding: 20px;
+	}
+
+		.education-card li {
+			align-items: center;
+			display: flex;
+			gap: 20px;
+			padding: 0;
+		}
+
+		/* The logos are wide wordmarks, so they get a wide slot and keep their proportions. */
+		.education-card img {
+			flex: none;
+			height: 48px;
+			object-fit: contain;
+			object-position: left center;
+			width: 112px;
+		}
+
+		.education-card div {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.education-title {
+			color: var(--text-strong);
+			font-size: 17px;
+			font-weight: 600;
+			line-height: 1.3;
+		}
+
+		.education-meta {
+			color: var(--text-muted);
+			font-size: 15px;
+			line-height: 1.5;
+		}
+
+			.education-years {
+				white-space: nowrap;
+			}
+
+/* Contact links */
+
+	.link-list {
+		border-top: 1px solid var(--line);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+		.link-list li {
+			padding: 0;
+		}
+
+		.link-list a {
+			align-items: center;
+			border-bottom: 1px solid var(--line);
+			color: var(--text-strong);
+			display: flex;
+			justify-content: space-between;
+			min-height: 52px;
+		}
+
+			.link-list a:hover {
+				border-bottom-color: var(--line);
+			}
+
+		.link-list-meta {
+			color: var(--text-muted);
+			font-size: 14px;
+		}
+
+/* Phone-only elements are hidden until phone.js shows them (see [hidden] above). */
+
+	#phone-topbar,
+	#phone-actions,
+	#sheet-backdrop,
+	#project-sheet {
+		display: none;
+	}
+
+/* Medium (Strata stacks the panel on top) */
+
+	@media screen and (max-width: 980px) {
+
+		#header .header-actions {
+			justify-content: center;
+		}
+
+	}
+
+/* Phone */
+
+	@media screen and (max-width: 736px) {
+
+		body {
+			font-size: 16px;
+		}
+
+		.education-card li {
+			gap: 14px;
+		}
+
+			.education-card img {
+				height: 40px;
+				width: 80px;
+			}
+
+		/* Without phone.js, featured cards stack and More work rows narrow, with the link under the tags. */
+		.work-featured .work-item {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.work-more .work-item {
+			align-items: start;
+			gap: 14px;
+			grid-template-columns: 96px minmax(0, 1fr);
+		}
+
+			.work-more .work-body {
+				grid-template-columns: minmax(0, 1fr);
+			}
+
+				.work-more .project-links {
+					grid-column: 1;
+					grid-row: auto;
+				}
+
+			.work-featured .work-item .image.thumb img {
+				aspect-ratio: 16 / 9;
+				height: auto;
+				min-height: 0;
+			}
+
+		/* Identity header: solid ink, no photo (saves the download on phones). */
+
+			#header {
+				background: var(--ink);
+				box-shadow: none;
+				display: flex;
+				flex-direction: column;
+				padding: calc(env(safe-area-inset-top) + 20px) 24px 28px 24px;
+				text-align: left;
+			}
+
+				#header > .inner {
+					display: flex;
+					flex-direction: column;
+					gap: 18px;
+					margin: 0;
+				}
+
+				#header .identity {
+					align-items: center;
+					display: flex;
+					gap: 16px;
+				}
+
+				#header .image.avatar {
+					flex: none;
+					height: 76px;
+					margin: 0;
+					width: 76px;
+				}
+
+					#header .image.avatar img {
+						height: 100%;
+						object-fit: cover;
+					}
+
+				#header .identity-text {
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+				}
+
+				#header h1 {
+					font-size: 26px;
+					line-height: 1.1;
+				}
+
+				#header .identity-role {
+					font-size: 16px;
+					margin: 0;
+				}
+
+				#header .identity-hook {
+					font-size: 16px;
+					margin: 0;
+					text-wrap: pretty;
+				}
+
+				#header .identity-pills {
+					display: flex;
+					flex-wrap: wrap;
+					gap: 8px;
+					margin: 0;
+				}
+
+					#header .identity-pills li {
+						font-size: 13px;
+						padding: 4px 12px;
+					}
+
+				#header .header-actions {
+					justify-content: flex-start;
+					margin: 0;
+				}
+
+			body.phone-ui #header .header-actions {
+				display: none;
+			}
+
+		/* Main column */
+
+			#main {
+				padding: 24px 20px 0 20px;
+			}
+
+				#main > section {
+					margin: 0;
+					padding: 24px 0;
+				}
+
+			body.phone-ui #main {
+				padding-top: 0;
+			}
+
+				body.phone-ui #main > section {
+					border-top: 0;
+					padding: 24px 0;
+				}
+
+				body.phone-ui #main p {
+					margin: 0 0 14px 0;
+				}
+
+				body.phone-ui #main > section > h2,
+				body.phone-ui #main .work-intro h2,
+				body.phone-ui #main > section > header.major {
+					display: none;
+				}
+
+				body.phone-ui .work-intro {
+					margin: 0 0 14px 0;
+				}
+
+					body.phone-ui .work-intro .work-hint {
+						margin-left: auto;
+					}
+
+			#main p {
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+		/* Collapsed identity bar */
+
+			body.phone-ui #phone-topbar {
+				align-items: center;
+				background: var(--ink);
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+				display: flex;
+				gap: 12px;
+				height: calc(52px + env(safe-area-inset-top));
+				left: 0;
+				padding: env(safe-area-inset-top) 20px 0 20px;
+				position: fixed;
+				right: 0;
+				top: 0;
+				transform: translateY(-100%);
+				transition: transform 0.2s ease-out, visibility 0.2s;
+				visibility: hidden;
+				z-index: 20;
+			}
+
+				body.phone-ui #phone-topbar.is-visible {
+					transform: none;
+					visibility: visible;
+				}
+
+				#phone-topbar img {
+					border-radius: 50%;
+					height: 34px;
+					object-fit: cover;
+					width: 34px;
+				}
+
+				#phone-topbar div {
+					display: flex;
+					flex-direction: column;
+					line-height: 1.15;
+				}
+
+				.topbar-name {
+					color: var(--on-ink);
+					font-size: 16px;
+					font-weight: 600;
+				}
+
+				.topbar-role {
+					color: var(--on-ink-subtle);
+					font-size: 13px;
+				}
+
+		/* Tabs */
+
+			body.phone-ui .phone-tabs {
+				background: var(--bg);
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				margin: 0 -20px;
+				position: sticky;
+				top: 0;
+				transition: top 0.2s ease-out;
+				z-index: 10;
+			}
+
+				body.phone-ui.topbar-visible .phone-tabs {
+					top: calc(52px + env(safe-area-inset-top));
+				}
+
+				.phone-tab {
+					background: none;
+					border: 0;
+					border-bottom: 3px solid transparent;
+					border-radius: 0;
+					color: var(--text-muted);
+					cursor: pointer;
+					font-family: inherit;
+					font-size: 15px;
+					font-weight: 600;
+					height: 50px;
+					padding: 0;
+				}
+
+					.phone-tab[aria-selected="true"] {
+						border-bottom-color: var(--accent);
+						color: var(--ink);
+					}
+
+					.phone-tab:focus-visible {
+						outline-offset: -4px;
+					}
+
+		/* Work: featured carousel and "more" list */
+
+			body.phone-ui #work {
+				padding-left: 0;
+				padding-right: 0;
+			}
+
+			body.phone-ui .work-heading {
+				margin: 0 0 14px 0;
+			}
+
+				body.phone-ui #main .work-heading h3 {
+					color: #4A4340;
+					font-size: 20px;
+					font-weight: 700;
+				}
+
+				body.phone-ui .work-hint {
+					color: var(--text-muted);
+					display: inline;
+					font-size: 13px;
+				}
+
+			body.phone-ui .work-item {
+				cursor: pointer;
+			}
+
+				body.phone-ui .work-item .work-desc,
+				body.phone-ui #main .work-item .work-summary,
+				body.phone-ui .work-item .project-links {
+					display: none;
+				}
+
+			body.phone-ui .work-featured {
+				display: flex;
+				flex-direction: row;
+				gap: 12px;
+				margin: 0 -20px 28px -20px;
+				overflow-x: auto;
+				padding: 0 20px 4px 20px;
+				scroll-padding: 0 20px;
+				scroll-snap-type: x mandatory;
+				scrollbar-width: none;
+			}
+
+				body.phone-ui .work-featured::-webkit-scrollbar {
+					display: none;
+				}
+
+				body.phone-ui .work-featured .work-item {
+					display: flex;
+					flex: 0 0 290px;
+					flex-direction: column;
+					scroll-snap-align: center;
+				}
+
+					body.phone-ui .work-featured .work-item .image.thumb,
+					body.phone-ui .work-featured .work-item .image.thumb img {
+						height: 150px;
+						min-height: 0;
+					}
+
+					body.phone-ui .work-featured .work-body {
+						padding: 14px 16px 16px 16px;
+					}
+
+					body.phone-ui .work-featured .tech-tags {
+						display: none;
+					}
+
+					body.phone-ui #main .work-featured .work-metric {
+						flex-direction: column;
+						gap: 6px;
+					}
+
+						body.phone-ui .work-featured .work-metric strong {
+							font-size: 28px;
+						}
+
+					body.phone-ui #main .work-featured .work-metric span,
+					body.phone-ui #main .work-featured .work-org {
+						font-size: 13px;
+						line-height: 1.4;
+					}
+
+					body.phone-ui #main .work-featured h3 {
+						font-size: 17px;
+					}
+
+			body.phone-ui .work-more {
+				display: flex;
+				flex-direction: column;
+				gap: 0;
+				margin: 0 -20px;
+			}
+
+				body.phone-ui .work-more .work-item {
+					align-items: center;
+					background: none;
+					border-radius: 0;
+					display: grid;
+					gap: 14px;
+					grid-template-columns: 52px minmax(0, 1fr) auto;
+					min-height: 64px;
+					padding: 12px 20px;
+				}
+
+					body.phone-ui .work-more .work-item::after {
+						color: #C4BDB8;
+						content: "›";
+						font-size: 20px;
+					}
+
+					body.phone-ui .work-more .image.thumb {
+						border-radius: 10px;
+						height: 52px;
+						overflow: hidden;
+						width: 52px;
+					}
+
+						body.phone-ui .work-more .image.thumb img {
+							aspect-ratio: 1;
+							height: 52px;
+						}
+
+					/* Title on its own line, then one meta line, "Company · tag, tag, …", cut off with an ellipsis. */
+					body.phone-ui .work-more .work-body {
+						color: var(--text-muted);
+						display: block;
+						font-size: 13px;
+						line-height: 1.4;
+						min-width: 0;
+						overflow: hidden;
+						padding: 0;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+
+					body.phone-ui #main .work-more .work-metric {
+						display: none;
+					}
+
+					/* Title and org flow into the one-line meta row. */
+					body.phone-ui .work-more .work-title {
+						display: contents;
+					}
+
+					body.phone-ui #main .work-more h3 {
+						font-size: 16px;
+						margin-bottom: 2px;
+						white-space: normal;
+					}
+
+					body.phone-ui #main .work-more .work-org,
+					body.phone-ui .work-more .tech-tags,
+					body.phone-ui .work-more .tech-tags .tag {
+						background: none;
+						color: var(--text-muted);
+						display: inline;
+						font-size: 13px;
+						margin: 0;
+						padding: 0;
+					}
+
+						body.phone-ui .work-more .work-org::after {
+							content: " · ";
+						}
+
+						body.phone-ui .work-more .tech-tags .tag:not(:last-child)::after {
+							content: ", ";
+						}
+
+		/* Experience (accordion when phone.js runs) */
+
+			body.phone-ui .timeline-head {
+				cursor: pointer;
+			}
+
+		/* Bottom action bar */
+
+			/* Keep focused or scrolled-to content clear of the fixed bars. */
+			html {
+				scroll-padding: calc(102px + env(safe-area-inset-top)) 0 calc(96px + env(safe-area-inset-bottom)) 0;
+			}
+
+			body.phone-ui {
+				padding-bottom: calc(96px + env(safe-area-inset-bottom));
+			}
+
+			body.phone-ui #phone-actions {
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				background: rgba(255, 255, 255, 0.94);
+				border-top: 1px solid var(--line);
+				bottom: 0;
+				display: grid;
+				gap: 8px;
+				grid-template-columns: 1fr 1fr 52px;
+				left: 0;
+				padding: 12px 16px calc(12px + env(safe-area-inset-bottom)) 16px;
+				position: fixed;
+				right: 0;
+				z-index: 15;
+			}
+
+				#phone-actions a {
+					align-items: center;
+					border: 0;
+					border-radius: 10px;
+					display: flex;
+					font-size: 16px;
+					font-weight: 600;
+					height: 48px;
+					justify-content: center;
+				}
+
+				#phone-actions .action-cv {
+					background: var(--accent);
+					color: var(--ink);
+				}
+
+				#phone-actions .action-linkedin {
+					border: 2px solid var(--ink);
+					color: var(--ink);
+				}
+
+				#phone-actions .action-mail {
+					background: var(--surface-2);
+					color: var(--ink);
+					font-size: 20px;
+				}
+
+				#phone-actions a:hover {
+					color: var(--ink) !important;
+				}
+
+		/* Footer: solid ink like the identity header, so phones never download the photo. */
+
+			#footer {
+				background: var(--ink);
+				padding: 2.25em 1.5em;
+			}
+
+		/* Project bottom sheet */
+
+			body.sheet-open {
+				overflow: hidden;
+			}
+
+			body.phone-ui #sheet-backdrop {
+				background: rgba(20, 15, 12, 0.5);
+				display: block;
+				inset: 0;
+				opacity: 0;
+				position: fixed;
+				transition: opacity 0.25s ease;
+				z-index: 30;
+			}
+
+				body.phone-ui #sheet-backdrop.is-open {
+					opacity: 1;
+				}
+
+			body.phone-ui #project-sheet {
+				background: var(--bg);
+				border-radius: 22px 22px 0 0;
+				bottom: 0;
+				display: flex;
+				flex-direction: column;
+				left: 0;
+				max-height: 78vh;
+				overflow-y: auto;
+				position: fixed;
+				right: 0;
+				transform: translateY(100%);
+				transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+				z-index: 31;
+			}
+
+				body.phone-ui #project-sheet.is-open {
+					transform: none;
+				}
+
+				#project-sheet:focus {
+					outline: none;
+				}
+
+				.sheet-handle {
+					background: #DDDDDD;
+					border-radius: 3px;
+					flex: none;
+					height: 5px;
+					margin: 10px auto 4px auto;
+					width: 40px;
+				}
+
+				.sheet-image {
+					background: #2A2320;
+					border-radius: 14px;
+					flex: none;
+					height: 180px;
+					margin: 6px 16px 0 16px;
+					overflow: hidden;
+				}
+
+					.sheet-image img {
+						display: block;
+						height: 100%;
+						object-fit: cover;
+						width: 100%;
+					}
+
+				.sheet-body {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					padding: 18px 20px calc(34px + env(safe-area-inset-bottom)) 20px;
+				}
+
+				.sheet-org {
+					color: var(--text-muted);
+					font-size: 13px;
+				}
+
+				#project-sheet .sheet-title {
+					color: var(--text-strong);
+					font-size: 22px;
+					font-weight: 700;
+					line-height: 1.2;
+					margin: 0;
+				}
+
+				#project-sheet .sheet-desc {
+					color: var(--text);
+					font-size: 16px;
+					line-height: 1.55;
+					margin: 0;
+				}
+
+				.sheet-tags {
+					margin: 0;
+				}
+
+				.sheet-links {
+					display: flex;
+					flex-wrap: wrap;
+					gap: 8px;
+				}
+
+					.sheet-links .button {
+						min-width: 0;
+					}
+
+				.sheet-close {
+					background: var(--ink);
+					border: 0;
+					border-radius: 10px;
+					color: var(--on-ink);
+					cursor: pointer;
+					font-family: inherit;
+					font-size: 16px;
+					font-weight: 600;
+					height: 48px;
+					margin-top: 10px;
+				}
+
+	}
+
+/* Respect reduced motion for the phone transitions. */
+
+	@media (prefers-reduced-motion: reduce) {
+
+		#phone-topbar,
+		.phone-tabs,
+		#sheet-backdrop,
+		#project-sheet {
+			transition: none !important;
+		}
+
+	}

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="'Source Sans 3', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <title>Agent runs: work queue, sandboxed agent per item, human review, merge request</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#E8A33D"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#9AAABD"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="#15202E"/>
+  <g transform="translate(0 20)">
+
+  <text x="60" y="190" fill="#E8A33D" font-size="34" font-weight="700" letter-spacing="5">SYMPHONY</text>
+  <text x="294" y="190" fill="#9AAABD" font-size="30">unattended agent runs</text>
+
+  <!-- 1. Work queue -->
+  <g>
+    <rect x="60" y="270" width="310" height="300" rx="22" fill="#1D2B3D" stroke="#2E4058" stroke-width="3"/>
+    <rect x="160" y="320" width="110" height="18" rx="9" fill="#EEF3F9" opacity="0.85"/>
+    <rect x="160" y="352" width="110" height="18" rx="9" fill="#EEF3F9" opacity="0.6"/>
+    <rect x="160" y="384" width="110" height="18" rx="9" fill="#EEF3F9" opacity="0.35"/>
+    <text x="215" y="472" fill="#EEF3F9" font-size="40" font-weight="600" text-anchor="middle">Work queue</text>
+    <text x="215" y="520" fill="#9AAABD" font-size="27" text-anchor="middle">Issues &amp; task files</text>
+  </g>
+
+  <!-- 2. Agent sandbox, one per item -->
+  <g>
+    <rect x="466" y="238" width="310" height="300" rx="22" fill="none" stroke="#E8A33D" stroke-width="3" opacity="0.25"/>
+    <rect x="458" y="254" width="310" height="300" rx="22" fill="#15202E" stroke="#E8A33D" stroke-width="3" opacity="0.5"/>
+    <rect x="450" y="270" width="310" height="300" rx="22" fill="#22344B" stroke="#E8A33D" stroke-width="4"/>
+    <rect x="550" y="312" width="110" height="96" rx="12" fill="#0F1824" stroke="#E8A33D" stroke-width="3"/>
+    <path d="M570 338L590 356L570 374" fill="none" stroke="#E8A33D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="600" y="370" width="36" height="7" rx="3" fill="#E8A33D"/>
+    <text x="605" y="472" fill="#EEF3F9" font-size="40" font-weight="600" text-anchor="middle">Agent sandbox</text>
+    <text x="605" y="520" fill="#9AAABD" font-size="27" text-anchor="middle">OpenCode per item</text>
+  </g>
+
+  <!-- 3. Human review -->
+  <g>
+    <rect x="840" y="270" width="310" height="300" rx="22" fill="#1D2B3D" stroke="#2E4058" stroke-width="3"/>
+    <circle cx="995" cy="362" r="50" fill="none" stroke="#EEF3F9" stroke-width="6" opacity="0.85"/>
+    <path d="M972 362L989 380L1020 346" fill="none" stroke="#EEF3F9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+    <text x="995" y="472" fill="#EEF3F9" font-size="40" font-weight="600" text-anchor="middle">Human review</text>
+    <text x="995" y="520" fill="#9AAABD" font-size="27" text-anchor="middle">Approve or send back</text>
+  </g>
+
+  <!-- 4. Merge request -->
+  <g>
+    <rect x="1230" y="270" width="310" height="300" rx="22" fill="#1D2B3D" stroke="#2E4058" stroke-width="3"/>
+    <g fill="none" stroke="#EEF3F9" stroke-width="6" opacity="0.85">
+      <circle cx="1355" cy="322" r="14"/>
+      <circle cx="1355" cy="404" r="14"/>
+      <circle cx="1425" cy="404" r="14"/>
+      <path d="M1355 336V390M1355 350C1355 380 1425 360 1425 390"/>
+    </g>
+    <text x="1385" y="472" fill="#EEF3F9" font-size="40" font-weight="600" text-anchor="middle">Merge request</text>
+    <text x="1385" y="520" fill="#9AAABD" font-size="27" text-anchor="middle">Plus agent MR review</text>
+  </g>
+
+  <!-- Flow -->
+  <g stroke="#E8A33D" stroke-width="5" fill="none" marker-end="url(#arrow)">
+    <path d="M378 420H440"/>
+    <path d="M786 420H830"/>
+    <path d="M1158 420H1220"/>
+  </g>
+
+  <!-- Send back for another run -->
+  <path d="M995 578V650H605V588" fill="none" stroke="#9AAABD" stroke-width="4" stroke-dasharray="12 10" marker-end="url(#arrow-muted)"/>
+  <text x="800" y="710" fill="#9AAABD" font-size="27" text-anchor="middle">Changes requested: a new run picks it up</text>
+  </g>
+</svg>
