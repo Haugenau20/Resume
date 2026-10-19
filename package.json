@@ -1,0 +1,14 @@
+{
+  "name": "resume-site",
+  "private": true,
+  "description": "Checks for the resume site. The site itself has no build step.",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/verify.mjs && html-validate index.html",
+    "test:shots": "node tests/verify.mjs --shots tests/shots"
+  },
+  "devDependencies": {
+    "html-validate": "8.24.2",
+    "puppeteer-core": "23.11.1"
+  }
+}
