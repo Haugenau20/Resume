@@ -93,16 +93,14 @@
 
             }
 
-    // Main Sections: Two.
+    // Main Sections: Selected work.
 
         // Lightbox gallery.
             $window.on('load', function() {
 
-                $('#two').poptrox({
+                $('#work').poptrox({
                     caption: function($a) {
-                        var nextH3 = $a.next('h3').text();
-                        if (nextH3) return nextH3;
-                        return $a.attr('title') || '';
+                        return $a.attr('title') || $a.closest('.work-item').find('h3').first().text();
                     },
                     overlayColor: '#2c2c2c',
                     overlayOpacity: 0.85,

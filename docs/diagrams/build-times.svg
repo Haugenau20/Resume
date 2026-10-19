@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="'Source Sans 3', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <title>Average build time: Keil 41.3 seconds, CMake with Ninja 23.1 seconds</title>
+  <rect width="1600" height="900" fill="#15202E"/>
+  <g transform="translate(0 20)">
+
+  <text x="60" y="190" fill="#E8A33D" font-size="34" font-weight="700" letter-spacing="5">BUILD TIME</text>
+  <text x="308" y="190" fill="#9AAABD" font-size="30">average of 10 builds</text>
+
+  <!-- Bars: 24.2 px per second from x=440 -->
+  <path d="M440 270V650" stroke="#2E4058" stroke-width="4"/>
+
+  <text x="400" y="372" fill="#EEF3F9" font-size="42" font-weight="600" text-anchor="end">Keil</text>
+  <text x="400" y="412" fill="#9AAABD" font-size="27" text-anchor="end">Previous setup</text>
+  <rect x="442" y="310" width="1000" height="120" rx="14" fill="#2E4058"/>
+  <text x="1418" y="386" fill="#EEF3F9" font-size="44" font-weight="600" text-anchor="end">41.3 s</text>
+
+  <text x="400" y="552" fill="#EEF3F9" font-size="42" font-weight="600" text-anchor="end">CMake + Ninja</text>
+  <text x="400" y="592" fill="#9AAABD" font-size="27" text-anchor="end">My build system</text>
+  <rect x="442" y="490" width="559" height="120" rx="14" fill="#E8A33D"/>
+  <text x="977" y="566" fill="#15202E" font-size="44" font-weight="700" text-anchor="end">23.1 s</text>
+
+  <text x="60" y="730" fill="#9AAABD" font-size="27">Measured for my B.Eng. thesis at LINAK A/S (table 5.1).</text>
+  </g>
+</svg>
