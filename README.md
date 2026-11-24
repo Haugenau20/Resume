@@ -5,7 +5,7 @@ Source for my resume site, [soren.haug.dk](https://soren.haug.dk/). I'm a Platfo
 ## 📬 Get In Touch
 
 - [Portfolio Website](https://soren.haug.dk/)
-- [LinkedIn](https://www.linkedin.com/in/s%C3%B8ren-kj%C3%A6degaard-haug-0723855a/)
+- [LinkedIn](https://www.linkedin.com/in/sorenhaug/)
 
 ## Checking changes
 
@@ -24,7 +24,7 @@ The CV and cover letters are built with [Typst](https://typst.app/) 0.15.1 from 
 
 - `cv/content.yaml` holds roles, education, skills and languages. Role titles, employers and dates must match the site's timeline; `npm test` fails if they drift.
 - `cv/summary.md` is the summary on the public CV.
-- `cv/cv.typ` and `cv/letter.typ` lay them out (the [modern-cv](https://typst.app/universe/package/modern-cv) and [neat-cv](https://typst.app/universe/package/neat-cv) templates). The fonts are vendored in `cv/fonts/`, so every machine produces the same PDF.
+- `cv/cv.typ` and `cv/letter.typ` lay them out (the [modern-cv](https://typst.app/universe/package/modern-cv) and [neat-cv](https://typst.app/universe/package/neat-cv) templates; modern-cv is vendored in `cv/vendor/` with one change, a page-margin setting). The fonts are vendored in `cv/fonts/`, so every machine produces the same PDF.
 
 Install Typst once with `winget install Typst.Typst`, then open a new terminal.
 

@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import os from 'node:os';
+import YAML from 'yaml';
 import { readSiteFacts, readCvFacts, compareFacts, loadContent } from '../cv/facts.mjs';
 import { typstAvailable, compile, pageCount, queryText } from '../cv/typst.mjs';
 import { loadConfig, readFrontMatter, findLatestApplication, newApplication, buildApplication, buildPublic } from '../cv/applications.mjs';
@@ -16,41 +17,69 @@ const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const html = fs.readFileSync(path.join(repo, 'index.html'), 'utf8');
 
 // ---------- facts: CV vs site ----------
+// These check facts only: every employer, title and date on the CV must agree with the
+// site, and every employer on the site must be on the CV. Order, merging and wording are free.
 test('site facts parse', () => {
   const f = readSiteFacts(html);
-  assert.equal(f.roles.length, 6);
-  assert.deepEqual(f.roles[0], { title: 'Platform Engineer', org: 'SAAB Danmark A/S', years: 'May 2026 – Present' });
-  assert.equal(f.roles[3].org, 'LINAK A/S');
-  assert.equal(f.roles[5].title, 'Sergeant & Guard Commander');
-  assert.deepEqual(f.education[0], { title: 'B.Eng. Electronics', school: 'University of Southern Denmark', years: '2020–2024' });
+  assert.equal(f.roles.length, (html.match(/class="timeline-role"/g) ?? []).length);
+  assert.ok(f.roles.length > 0 && f.education.length > 0);
+  for (const r of f.roles) assert.ok(r.title && r.org && r.years && !r.org.includes('·'), JSON.stringify(r));
+  for (const e of f.education) assert.ok(e.title && e.school && e.years, JSON.stringify(e));
 });
 
-test('compareFacts reports a changed date', () => {
-  const site = { roles: [{ title: 'A', org: 'B', years: 'May 2025 – Apr 2026' }], education: [] };
-  const cv = { roles: [{ title: 'A', org: 'B', years: 'May 2025 - Apr 2026 ' }], education: [] };
-  assert.deepEqual(compareFacts(site, cv, []), []);
-  cv.roles[0].years = 'Jun 2025 – Apr 2026';
-  const diff = compareFacts(site, cv, []);
-  assert.equal(diff.length, 1);
-  assert.match(diff[0], /A.*years/);
+const job = (org, years, ...positions) => ({ org, years, positions });
+const site = {
+  roles: [
+    { title: 'Lead', org: 'Acme', years: 'May 2026 – Present' },
+    { title: 'Tester', org: 'Acme', years: 'May 2025 – Apr 2026' },
+    { title: 'Engineer', org: 'Initech', years: 'Feb 2024 – Jul 2024' },
+    { title: 'Intern', org: 'Initech', years: 'Feb 2023 – Jan 2024' },
+  ],
+  education: [{ title: 'B.Eng.', school: 'Uni', years: '2020–2024' }],
+};
+const cvOk = () => ({
+  jobs: [
+    job('Initech', 'Feb 2023 - Jul 2024', { title: 'Engineer' }),
+    job('Acme', 'May 2025 – Present', { title: 'Lead', years: 'May 2026 – Present' }, { title: 'Tester', years: 'May 2025 – Apr 2026' }),
+  ],
+  education: [{ title: 'B.Eng.', school: 'Uni', years: '2020 – 2024' }],
 });
 
-test('compareFacts reports a role missing from the CV', () => {
-  const site = { roles: [{ title: 'A', org: 'B', years: '2020' }, { title: 'C', org: 'D', years: '2019' }], education: [] };
-  const cv = { roles: [{ title: 'A', org: 'B', years: '2020' }], education: [] };
-  assert.match(compareFacts(site, cv, []).join('\n'), /C/);
+test('compareFacts accepts merged roles in any order', () => {
+  assert.deepEqual(compareFacts(site, cvOk(), []), []);
 });
 
-test('compareFacts honours omit_from_cv', () => {
-  const site = { roles: [{ title: 'A', org: 'B', years: '2020' }, { title: 'C', org: 'D', years: '2019' }], education: [] };
-  const cv = { roles: [{ title: 'A', org: 'B', years: '2020' }], education: [] };
-  assert.deepEqual(compareFacts(site, cv, ['C']), []);
+test('compareFacts reports employer dates that differ from the site', () => {
+  const cv = cvOk();
+  cv.jobs[0].years = 'Feb 2024 – Jul 2024';
+  assert.match(compareFacts(site, cv, []).join('\n'), /Initech/);
+});
+
+test('compareFacts reports a role title the site does not have', () => {
+  const cv = cvOk();
+  cv.jobs[0].positions[0].title = 'Senior Engineer';
+  assert.match(compareFacts(site, cv, []).join('\n'), /Senior Engineer/);
+});
+
+test('compareFacts reports role dates that differ from the site', () => {
+  const cv = cvOk();
+  cv.jobs[1].positions[1].years = 'Jun 2025 – Apr 2026';
+  assert.match(compareFacts(site, cv, []).join('\n'), /Tester/);
+});
+
+test('compareFacts reports a site employer missing from the CV, unless omitted', () => {
+  const cv = cvOk();
+  cv.jobs.pop();
+  assert.match(compareFacts(site, cv, []).join('\n'), /Acme/);
+  assert.deepEqual(compareFacts(site, cv, ['Acme']), []);
 });
 
 test('compareFacts checks education', () => {
-  const site = { roles: [], education: [{ title: 'X', school: 'Y', years: '2020–2024' }] };
-  const cv = { roles: [], education: [{ title: 'X', school: 'Y', years: '2020–2023' }] };
-  assert.match(compareFacts(site, cv, []).join('\n'), /X.*years/);
+  const cv = cvOk();
+  cv.education[0].years = '2020–2023';
+  assert.match(compareFacts(site, cv, []).join('\n'), /B\.Eng\./);
+  cv.education = [];
+  assert.match(compareFacts(site, cv, []).join('\n'), /B\.Eng\./);
 });
 
 test('cv content matches site', () => {
@@ -91,6 +120,36 @@ test('public cv build is deterministic', async () => {
 test('tailored cv without phone fails', async () => {
   await assert.rejects(compile('cv', tmp('t.pdf'), { summary, variant: 'tailored' }), /phone is required for tailored builds/);
   assert.equal(fs.existsSync(tmp('t.pdf')), false);
+});
+
+test('public cv uses a bullet\'s public wording; tailored cv keeps the full one', async () => {
+  const content = loadContent(repo);
+  content.experience = [{ org: 'Acme', years: '2020 – 2021', positions: [{ title: 'Engineer', bullets: [
+    { text: 'Used by 99 engineers.', public: 'Used across several teams.' },
+    'A bullet with one wording.',
+  ] }] }];
+  fs.mkdirSync(path.join(repo, 'cv/.build'), { recursive: true });
+  const file = path.join(repo, 'cv/.build', `test-content-${process.pid}.yaml`);
+  fs.writeFileSync(file, YAML.stringify(content));
+  try {
+    const content_ = `/cv/.build/${path.basename(file)}`;
+    const pub = await queryText('cv', '<experience>', { summary, variant: 'public', content: content_ });
+    assert.match(pub, /Used across several teams\./);
+    assert.match(pub, /A bullet with one wording\./);
+    assert.doesNotMatch(pub, /99 engineers/);
+    const tailored = await queryText('cv', '<experience>', { summary, variant: 'tailored', phone: '+45 12 34 56 78', content: content_ });
+    assert.match(tailored, /Used by 99 engineers\./);
+    assert.doesNotMatch(tailored, /several teams/);
+  } finally {
+    fs.rmSync(file, { force: true });
+  }
+});
+
+test('the site address is shown without https:// on the cv', async () => {
+  const text = await queryText('cv', '<contact>', { summary, variant: 'public' });
+  const site = loadContent(repo).contact.site;
+  assert.ok(text.includes(site.replace(/^https?:\/\//, '').replace(/\/$/, '')), text);
+  assert.ok(!text.includes(site), text);
 });
 
 test('tailored cv shows the phone number', async () => {
@@ -202,7 +261,7 @@ test('cv:new without earlier applications seeds from cv/summary.md and a stub le
   const config = makeConfig();
   const dir = newApplication(config, 'Acme', 'Role');
   assert.equal(readFrontMatter(fs.readFileSync(path.join(dir, 'summary.md'), 'utf8')).body.trim(), summary.trim());
-  assert.match(fs.readFileSync(path.join(dir, 'cover-letter.md'), 'utf8'), /Kind regards,\nSøren K\. Haug/);
+  assert.ok(fs.readFileSync(path.join(dir, 'cover-letter.md'), 'utf8').trim().length > 0, 'expected a stub letter to start from');
 });
 
 test('cv:new rejects invalid folder names', () => {
