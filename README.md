@@ -1,10 +1,10 @@
-# Søren K. Haug - Electronics & Software Engineer
+# Søren K. Haug - Platform Engineer
 
-Welcome to my professional portfolio repository. I'm an Electronics & Software Engineer combining technical expertise with practical leadership to solve complex challenges in embedded systems and software automation. My background includes professional experience in build automation, continuous integration, and embedded software development, complemented by leadership experience in the Danish Army.
+Source for my resume site, [soren.haug.dk](https://soren.haug.dk/). I'm a Platform Engineer at SAAB Danmark A/S, building AI tooling for developers, with a background in test automation, CI/CD and embedded software.
 
 ## 📬 Get In Touch
 
-- [Portfolio Website](https://haugenau20.github.io/Resume/)
+- [Portfolio Website](https://soren.haug.dk/)
 - [LinkedIn](https://www.linkedin.com/in/s%C3%B8ren-kj%C3%A6degaard-haug-0723855a/)
 
 ## Checking changes
