@@ -2,9 +2,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap");
 
 /*
-	Colour tokens (docs/design_handoff_resume_site/Colour Scheme.md).
-	Never use --accent as text on white; on amber fills use --ink text.
+	Colour tokens: warm neutrals plus one amber accent. Same palette on desktop, phone and the PDF CV.
+	--accent        fills and highlights on dark (header role line, primary button, active tab, focus on dark). 8.1:1 on --ink.
+	--accent-deep   accent text on white (links, dates, focus on white). 5.0:1 on white.
+	--accent-deeper link hover, tag text. 7.4:1 on white.
+	--accent-tint   tag/chip background.
 	--accent-hover / --accent-active are the primary button's hover and pressed fills.
+	Never use --accent as text on white (2.2:1); on amber fills use --ink text.
+	Keep the header photo overlay at least 70% --ink so amber and white text keep their contrast.
+	PDF CV: --ink for the name, --accent-deep for headings/rules, --text for body; avoid --accent on paper.
 */
 
 	:root {

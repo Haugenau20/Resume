@@ -1,0 +1,10 @@
+# GitHub Pages builds this repo with Jekyll. Only the site itself
+# (index.html, assets/, images/, files/, CNAME) should be published;
+# keep repo-only files off soren.haug.dk.
+exclude:
+  - docs/
+  - tests/
+  - README.md
+  - package.json
+  - package-lock.json
+  - node_modules/
