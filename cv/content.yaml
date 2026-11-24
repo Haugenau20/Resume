@@ -1,0 +1,94 @@
+# CV content. Shared facts (role titles, employers, dates, education) must match
+# index.html: `npm test` fails if they drift. Bullets, skills and languages can say
+# more than the site.
+#
+# status: draft  → `npm run cv` writes a preview to cv/.build/ and leaves files/Resume.pdf alone.
+# status: final  → `npm run cv` regenerates files/Resume.pdf, and `npm test` checks it stays fresh.
+status: draft
+
+name: Søren K. Haug
+headline: Platform Engineer
+location: Denmark
+
+contact:
+  email: contact@soren.haug.dk
+  linkedin: https://www.linkedin.com/in/s%C3%B8ren-kj%C3%A6degaard-haug-0723855a/
+  github: https://github.com/Haugenau20
+  site: https://soren.haug.dk/
+
+# Site timeline titles deliberately left off the CV.
+omit_from_cv: []
+
+roles:
+  - title: Platform Engineer
+    org: SAAB Danmark A/S
+    years: May 2026 – Present
+    bullets:
+      - Rolling out AI tooling for developers, including sandboxed coding agents and autonomous merge request reviews.
+      - Built a work queue that runs coding agents in isolated containers, one per task, with human review before merge.
+      - Maintain Ansible roles, OS setup and a shared signing service used across teams.
+
+  - title: Automation Tester
+    org: SAAB Danmark A/S
+    years: May 2025 – Apr 2026
+    bullets:
+      - Designed and built a pytest automation framework from scratch, integrated with CI/CD.
+      - Wrote test plans and Doxygen documentation for certification, with ongoing code and document reviews.
+      - Built automated API test suites against internal audit systems and an MQTT broker.
+
+  - title: Independent Software Engineer
+    org: Self-employed
+    years: Aug 2024 – Apr 2025
+    bullets:
+      - Embedded C projects integrating sensors across several MCUs.
+      - Built and deployed React/TypeScript web apps with GitHub Actions and Docker.
+
+  - title: Development Engineer
+    org: LINAK A/S
+    years: Feb 2024 – Jul 2024
+    bullets:
+      - Unit tests with GoogleTest and system tests with Robot Framework and Python.
+      - Jenkins pipelines and a PowerShell linting framework for MISRA C compliance.
+      - Embedded features for ARM Cortex-M0+ and M4 processors, debugged on target hardware.
+
+  - title: Intern and thesis student
+    org: LINAK A/S
+    years: Feb 2023 – Jan 2024
+    bullets:
+      - "Bachelor thesis: a CMake build system for an embedded software platform that made builds 1.8× faster. Final grade A."
+
+  - title: Sergeant & Guard Commander
+    org: The Danish Army
+    years: Jul 2017 – Sep 2020
+    bullets:
+      - Led teams of 8–40 people. Awarded Best Squad and Soldier of the Month.
+      - Taught courses for middle managers and officers, with a 100% pass rate.
+
+education:
+  - title: B.Eng. Electronics
+    school: University of Southern Denmark
+    years: 2020–2024
+    details:
+      - Exchange semester at the University of Calgary.
+      - "Thesis: Project Build Automation (CMake). Final grade A."
+  - title: Sergeant education
+    school: Danish Army NCO School
+    years: 2016–2017
+    details: []
+
+skills:
+  - group: Platform & AI tooling
+    items: [Docker, Ansible, Linux, Bash, OpenCode, LLM agents]
+  - group: Build & CI/CD
+    items: [CMake, Jenkins, GitHub Actions, GitLab, JFrog, Git]
+  - group: Test & automation
+    items: [pytest, Python, GoogleTest, Robot Framework, PowerShell]
+  - group: Embedded
+    items: [C/C++, ARM Cortex-M, ESP32, MISRA C]
+  - group: Web
+    items: [TypeScript, React, Firebase, Tailwind CSS]
+
+languages:
+  - { name: English, level: Fluent }
+  - { name: Danish, level: Native }
+  - { name: German, level: Beginner }

@@ -1,0 +1,1 @@
+Platform Engineer at SAAB Danmark A/S, building AI tooling for developers: sandboxed coding agents and autonomous merge request reviews. Background in test automation, build systems and CI/CD, from pytest frameworks to a CMake build that made embedded builds 1.8× faster. B.Eng. in Electronics from the University of Southern Denmark, and former Sergeant in the Danish Army.

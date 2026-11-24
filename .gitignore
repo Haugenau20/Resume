@@ -1,3 +1,8 @@
 node_modules/
 tests/shots/
 docs/superpowers/
+cv/.samples/
+cv/.build/
+cv/local.json
+cv/applications/
+.claude/settings.local.json

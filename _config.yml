@@ -2,9 +2,11 @@
 # (index.html, assets/, images/, files/, CNAME) should be published;
 # keep repo-only files off soren.haug.dk.
 exclude:
+  - cv/
   - docs/
   - tests/
   - README.md
+  - Makefile
   - package.json
   - package-lock.json
   - node_modules/
