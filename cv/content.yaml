@@ -4,7 +4,7 @@
 #
 # status: draft  → `npm run cv` writes a preview to cv/.build/ and leaves files/Resume.pdf alone.
 # status: final  → `npm run cv` regenerates files/Resume.pdf, and `npm test` checks it stays fresh.
-status: draft
+status: final
 
 name: Søren K. Haug
 headline: Platform Engineer
@@ -12,57 +12,71 @@ location: Denmark
 
 contact:
   email: contact@soren.haug.dk
-  linkedin: https://www.linkedin.com/in/s%C3%B8ren-kj%C3%A6degaard-haug-0723855a/
+  linkedin: https://www.linkedin.com/in/sorenhaug/
   github: https://github.com/Haugenau20
   site: https://soren.haug.dk/
 
-# Site timeline titles deliberately left off the CV.
+# Employers or education titles on the site that are deliberately left off the CV.
 omit_from_cv: []
 
-roles:
-  - title: Platform Engineer
-    org: SAAB Danmark A/S
-    years: May 2026 – Present
-    bullets:
-      - Rolling out AI tooling for developers, including sandboxed coding agents and autonomous merge request reviews.
-      - Built a work queue that runs coding agents in isolated containers, one per task, with human review before merge.
-      - Maintain Ansible roles, OS setup and a shared signing service used across teams.
+# Each employer has one or more positions. Several site roles can be merged into one
+# entry; the employer's dates must then span them (`npm test` checks this against the
+# site). A position's own `years` is optional; leave it out when it's the employer's.
+# `heading` replaces the employer line on the CV (used for the career break).
+experience:
+  - org: SAAB Danmark A/S
+    years: May 2025 – Present
+    positions:
+      - title: Platform Engineer
+        years: May 2026 – Present
+        bullets:
+          # A bullet can be { text, public }: the public CV on the site uses `public`, applications
+          # use `text`. Note this file is public on GitHub either way.
+          - Build and run a locked-down sandbox where several teams use OpenCode on the internal LLM.
+          - Building an automated merge request review service, now reviewing daily across several projects.
+          - Built a queue that runs agents unattended, one sandbox per task, with human review before merge.
+          - Maintain Ansible roles, OS setup and a shared signing service used across teams.
+      - title: Automation Tester
+        years: May 2025 – Apr 2026
+        bullets:
+          - Laid the foundation of a pytest framework with CI/CD, since taken over and grown by the team.
+          - Automated API tests for the TactiCall tactical communication system via audit systems and MQTT.
+          - Wrote test plans and Doxygen docs for EAL certification, with ongoing code and document reviews.
 
-  - title: Automation Tester
-    org: SAAB Danmark A/S
-    years: May 2025 – Apr 2026
-    bullets:
-      - Designed and built a pytest automation framework from scratch, integrated with CI/CD.
-      - Wrote test plans and Doxygen documentation for certification, with ongoing code and document reviews.
-      - Built automated API test suites against internal audit systems and an MQTT broker.
-
-  - title: Independent Software Engineer
-    org: Self-employed
+  - org: London, UK
+    heading: Career break · London, UK
     years: Aug 2024 – Apr 2025
-    bullets:
-      - Embedded C projects integrating sensors across several MCUs.
-      - Built and deployed React/TypeScript web apps with GitHub Actions and Docker.
+    positions:
+      - title: Career break
+        bullets:
+          - Lived in London while looking for work, and used the time for self-directed projects.
+          - Started using AI in my development workflow, and began the project that became Muninn.
 
-  - title: Development Engineer
-    org: LINAK A/S
-    years: Feb 2024 – Jul 2024
-    bullets:
-      - Unit tests with GoogleTest and system tests with Robot Framework and Python.
-      - Jenkins pipelines and a PowerShell linting framework for MISRA C compliance.
-      - Embedded features for ARM Cortex-M0+ and M4 processors, debugged on target hardware.
+  - org: LINAK A/S
+    years: Feb 2023 – Jul 2024
+    positions:
+      - title: Development Engineer
+        bullets:
+          - Joined as an intern and thesis student; hired as a Development Engineer after graduating.
+          - Built Jenkins build and test pipelines, and a PC-lint Plus framework checking code against MISRA C.
+          - Wrote unit tests in GoogleTest and system tests in Robot Framework for actuator firmware.
+          - Developed and debugged firmware for STM32G and nRF528x microcontrollers on target hardware.
 
-  - title: Intern and thesis student
-    org: LINAK A/S
-    years: Feb 2023 – Jan 2024
-    bullets:
-      - "Bachelor thesis: a CMake build system for an embedded software platform that made builds 1.8× faster. Final grade A."
-
-  - title: Sergeant & Guard Commander
-    org: The Danish Army
+  - org: The Danish Army
     years: Jul 2017 – Sep 2020
-    bullets:
-      - Led teams of 8–40 people. Awarded Best Squad and Soldier of the Month.
-      - Taught courses for middle managers and officers, with a 100% pass rate.
+    positions:
+      - title: Sergeant & Guard Commander
+        bullets:
+          - Led teams of 8–40 people. Awarded Best Squad and Soldier of the Month.
+          - Taught courses for middle managers and officers, with a 100% pass rate.
+
+# One line each, shown under "Selected projects". `link` is optional.
+projects:
+  - name: Homelab
+    text: A Raspberry Pi running DNS, monitoring, OpenBao secrets and private apps over Tailscale, managed as code with Ansible and Compose, with encrypted backups, restore tests and runbooks.
+  - name: Muninn
+    link: https://muninn.quest
+    text: A tabletop RPG campaign journal; AI pulls NPCs and quests from notes.
 
 education:
   - title: B.Eng. Electronics
@@ -70,23 +84,30 @@ education:
     years: 2020–2024
     details:
       - Exchange semester at the University of Calgary.
-      - "Thesis: Project Build Automation (CMake). Final grade A."
+      - "Thesis at LINAK: a CMake build system replacing Keil, cutting builds from 41 s to 23 s. Grade A."
   - title: Sergeant education
     school: Danish Army NCO School
     years: 2016–2017
     details: []
 
+# Most relevant first for platform roles. Only list what you'd be happy to be questioned on.
 skills:
-  - group: Platform & AI tooling
-    items: [Docker, Ansible, Linux, Bash, OpenCode, LLM agents]
-  - group: Build & CI/CD
-    items: [CMake, Jenkins, GitHub Actions, GitLab, JFrog, Git]
-  - group: Test & automation
-    items: [pytest, Python, GoogleTest, Robot Framework, PowerShell]
+  - group: Platform & infrastructure
+    items: [Linux, Docker, Ansible, Bash, systemd, Tailscale, nftables, OpenBao]
+  - group: CI/CD & build
+    items: [GitHub Actions, GitLab, Jenkins, TeamCity, JFrog, CMake, Make, Meson, Git]
+  - group: Monitoring
+    items: [Gatus, Uptime Kuma, Beszel]
+  - group: AI tooling
+    items: [OpenCode, LLM agents, sandboxed agent environments]
+  - group: Programming
+    items: [Python, TypeScript, C/C++, PowerShell]
+  - group: Testing
+    items: [pytest, GoogleTest, Robot Framework]
   - group: Embedded
-    items: [C/C++, ARM Cortex-M, ESP32, MISRA C]
-  - group: Web
-    items: [TypeScript, React, Firebase, Tailwind CSS]
+    items: [ARM Cortex-M, STM32, nRF52, MISRA C, PC-lint Plus, Keil MDK]
+  - group: Ways of working
+    items: [Agile/Scrum, TDD, code review, Jira, Confluence]
 
 languages:
   - { name: English, level: Fluent }

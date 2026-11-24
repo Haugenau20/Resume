@@ -57,7 +57,7 @@ export async function compile(doc, out, inputs) {
 
 // Returns the elements matching a Typst selector (e.g. "<summary>") as parsed JSON.
 export async function query(doc, selector, inputs) {
-  return JSON.parse(await run(['query', ...baseArgs(inputs), docPath(doc), selector]));
+  return JSON.parse(await run(['eval', ...baseArgs(inputs), '--in', docPath(doc), `query(${selector})`]));
 }
 
 // The plain text of the elements matching `selector`, for checking what a document says.

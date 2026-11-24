@@ -28,6 +28,9 @@
 )
 #set text(lang: "en")
 
+// neat-cv sets the first name light and the last name medium; keep the whole name one
+// weight. Only the last name is medium, so this touches nothing else.
+#show text.where(weight: "medium"): set text(weight: "light")
 #show: letter.with(
   author: (
     firstname: names.slice(0, -1).join(" "),
