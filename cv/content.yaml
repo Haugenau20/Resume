@@ -4,7 +4,7 @@
 #
 # status: draft  → `npm run cv` writes a preview to cv/.build/ and leaves files/Resume.pdf alone.
 # status: final  → `npm run cv` regenerates files/Resume.pdf, and `npm test` checks it stays fresh.
-status: draft
+status: final
 
 name: Søren K. Haug
 headline: Platform Engineer
